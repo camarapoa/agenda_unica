@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title><%= yield(:title) || 'Agenda Única'%></title>
+    
+    <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+    <%= stylesheet_link_tag 'jqueryui', 'application', 'agenda' %>
+    <%= javascript_include_tag 'jquery', 'jqueryui', 'jquery.cookie', 'jquery.hoverintent', 'cmpa', 'jquery.maskedinput', 'jquery.alphanumeric','jquery.validate', 'application' %>
+    <%= yield :head %>
+  </head>
+  <body select_elements='<%= yield(:select_elements) || "##{controller_name}" %>'>
+    <div id='container'>
+      <div id='header'>
+        <h2><%= link_to 'Agenda Única', session[:eventos_uri] || root_path %></h2>
+        <ul id='nav'>
+        	<li id='eventos-new'><%= link_to 'Meus Eventos', meus_eventos_path %></li>
+          <% if current_lotacao && (operador? || current_lotacao.role_of_operador_agenda_presidencia? || current_lotacao.role_of_administrador_agenda?) %>
+            <li id='eventos-new'><%= link_to 'Cadastrar Evento', new_evento_path %></li>
+          <% end %>  
+          <% if current_lotacao && (current_lotacao.role_of_administrador_agenda? || current_lotacao.role_of_super_administrador_agenda? ) %>            
+            <li id='emprestimos'><%= link_to 'Gerenciar Empréstimos de Espaços', emprestimos_path %></li>
+          <% end %>
+          <li><%= render 'application/login' %></li>
+        </ul>
+      </div>
+      
+      <div id="loading-indicator" style='display:none'>Aguarde...</div>
+      <div id='content'>
+        <%= yield %>
+      </div>
+      
+      <div id='footer'>
+        <%= render 'application/footer' %>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,154 @@
+<% stylesheet 'markitup' %>
+<% javascript 'jquery.growfield', 'jquery.markitup' %>
+
+<%= flash_messages flash %>
+<%= f.error_messages %>
+<%= f.hidden_field :processo_id %>
+
+<table class='fieldset'>
+  <tr>
+    <td><%= f.label :categoria, 'Categoria:', :class => 'required' %></td>
+    <td><%= f.select :categoria, Evento::CATEGORIAS, :include_blank => true %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :tipo_evento_id, 'Tipo de evento:', :class => 'required' %></td>
+    <td><%= f.collection_select :tipo_evento_id, @tipos_eventos, :id, :nome, {:include_blank => true},  {  :onchange => "verifica_reuniao_comissao()" } %></td>
+  </tr>  
+  <tr id='comissao' style='display:none'>
+    <td><%= f.label :comissao_id, 'Comissão:', :class => 'required' %></td>    
+    <td><%= f.select :comissao_id, @comissoes,  :include_blank => true %></td>
+  </tr>  
+  <tr>
+    <td><%= f.label :titulo, 'Título:', :class => 'required' %></td>
+    <td><%= f.text_field :titulo, :size => 50 %></td>
+  </tr>  
+  <tr>
+    <td><%= f.label :descricao, 'Descrição:' %></td>
+    <td><%= f.text_area :descricao, :size => '30x5' %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :local_id, 'Local:' %></td>
+    <td><%= f.select :local_id, @locais, :include_blank => true %></td>
+  </tr>  
+  <tr>
+    <td><%= f.label :outro_local, 'Outro Local:' %></td>
+    <td><%= f.text_area :outro_local, :size => '80x5' %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :data_inicio, 'Data de início:', :class => 'required' %></td>
+    <td><%= f.text_field :data_inicio, :size => 12, :class => 'date' %></td>
+  </tr>  
+  <tr>
+    <td><%= f.label :horario_inicio, 'Inicia às:', :class => 'required' %></td>
+    <td><%= f.select :horario_inicio, time_intervals('08:30', '22:00', :step => 15.minutes), :include_blank => true %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :data_termino, 'Data de término:', :class => 'required' %></td>
+    <td><%= f.text_field :data_termino, :size => 12, :class => 'date' %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :horario_termino, 'Termina às:', :class => 'required' %></td>
+    <td><%= f.select :horario_termino, time_intervals('08:30', '22:00', :step => 15.minutes), :include_blank => true %></td>
+  </tr>
+  
+   <tr>
+    <td><%= f.label :observacao, 'Necessidades de Recursos:' %></td>
+    <td><%= f.text_area :observacao,:size => '40x5'%></td>
+  </tr>
+  <tr>
+    <td><%= f.label :proponente, 'Proponente:', :class => 'required' %></td>
+    <td><%= f.text_field :proponente, :size => 50 %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :coordenador, 'Coordenador:' %></td>
+    <td><%= f.text_field :coordenador, :size => 50 %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :contato, 'Contato:', :class => 'required' %></td>
+    <td><%= f.text_area :contato, :size => '40x5' %></td>
+  </tr>  
+  <tr>
+    <td><%= f.label :processo, 'Processo:' %></td>
+    <td>
+      <%= f.text_field :processo %>
+      <%= link_to 'Buscar...', '/eventos/buscar_processos', :id => 'buscar-processos' %>
+    </td>
+  </tr>
+  <tr>
+    <td><%= f.label :documento, 'Documento:' %></td>
+    <td><%= f.text_field :documento %></td>
+  </tr>
+</table>
+
+<div class='box sub'>
+  <ul id='processos'></ul>
+</div>
+
+<div class='box sub'>
+  <h3>Arquivos</h3>
+  <div>
+    <% f.fields_for :assets do |asset_form| %>    
+      <% if asset_form.object.new_record? %>
+        <p>
+          <%= asset_form.label :data, 'Adicionar arquivo' %>
+          <%= asset_form.file_field :data %>
+        </p>
+      <% end %>
+    <% end %>
+    
+    <% if @evento.assets.any? { |asset| !asset.new_record? } %>
+      <br />
+      <table id='assets' class='list'>
+        <% @evento.assets.each do |asset| %>
+          <% unless asset.new_record? %>
+            <tr class="<%= cycle 'odd', 'even' %>">
+              <td>
+                <% link_to asset.data.url, :target => '_blank', :icon => :external_link do %>
+                  <%= truncate asset.data_file_name.humanize, :length => 60 %>
+                  (<%= number_to_human_size asset.data_file_size %>)
+                <% end %>
+              </td>
+              <td class='links'><%= link_to 'Excluir', destroy_asset_path(@evento, asset), :method => :delete, :confirm => 'Confirmar exclusão deste arquivo?' %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  jQuery(function($) {
+    $('#evento_descricao').markItUp(CMPA.getTextileSet()).growfield();
+    
+    $('#buscar-processos').click(function() {
+      var processo = $('#evento_processo').val();
+      $.get(this.href, { processo: processo }, function() {}, 'script');
+      $('#processos').show();
+      return false;
+    });
+    
+    $('#processos a.select-processo').live('click', function() {
+      var li = $(this).parent();
+      $('#evento_processo').val(li.attr('numero') + '/' + li.attr('ano'));
+      $('#evento_processo_id').val(li.attr('processo_id'));
+      $('#processos').hide();
+      return false;
+    });    
+  });
+  
+function verifica_reuniao_comissao()  {
+	//reunião de comissão possui id = 8	
+	if(jQuery('#evento_tipo_evento_id').val() == '8'){
+		jQuery('#comissao').show();
+	}
+	else{
+		jQuery('#comissao').hide();	
+	}
+}
+
+verifica_reuniao_comissao();
+
+</script>
+
+

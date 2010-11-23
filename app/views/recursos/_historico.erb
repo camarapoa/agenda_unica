@@ -1,0 +1,60 @@
+<h3 class='title'>Histórico de Solicitações de Recursos</h3>
+
+<% if @logs.any? %>
+  <% @logs.each do |log| %>
+    <% m = log.history['material'] %>
+    <p>
+      <% if m %>
+        Atualizado em <%= log.updated_at.strftime('%d/%m/%Y') %> às <%= log.updated_at.strftime('%Hh %Mmin') %> por  <%= log.updated_by %>
+      <% end %>
+    </p>
+    <ul class='list'>
+      <!-- Mensagens para materiais adicionados ou removidos -->
+      <% if m %>
+        <% if m['removido'] %>
+          <strong><%= m['removido'][0] %></strong> <em> <%= m['item'] %> <%= m['removido'][1] %></em> removidos(as)
+        <% elsif m['adicionado'] %>
+          <strong><%= m['adicionado'][0] %></strong>  <em><%= m['item'] %></em> solicitados(as)
+        <% end %>
+        
+        <!--
+          Mensagens para materiais alterados
+          3 atributos podem ser alterados:
+            * quantidade,
+            * observacao,
+            * recurso_evento_id (tipo de material foi alterado)
+        -->
+        <% if ma = m['alterado'] %>
+
+          <% if ma['quantidade'] %>
+            <li>
+              <strong>Quantidade</strong> de <%= m['item'] %> foi modificada de 
+              <em><%= ma['quantidade'][0] %></em> para <em><%= ma['quantidade'][1] %></em> unidades
+            </li>
+          <% end %>
+          <% if m['observacao'] %>
+            <li>
+              <% if ma['observacao'][0].blank? %>
+                <strong>Observação</strong> de <%= m['item'] %>  '<em><%= ma['observacao'][1] %></em>' adicionada
+              <% elsif ma['observacao'][1].blank? %>
+                <strong>Observação</strong> de <%= m['item'] %> '<em><%= ma['observacao'][0] %></em>' removida
+              <% else %>
+                <strong>Observação</strong> de <%= m['item'] %>   foi modificada de 
+                '<em><%= ma['observacao'][0] %></em>' para '<em><%= ma['observacao'][1] %></em>'
+              <% end %>
+            </li>
+          <% end %>
+          <% if m['recurso_evento_id'] %>
+            <li>
+              <strong>Tipo de material</strong>  foi modificado de 
+              <em><%= RecursoEvento.find(m['recurso_evento_id'][0].to_i).nome %></em>
+               para <em><%= RecursoEvento.find(m['recurso_evento_id'][1].to_i).nome %></em>
+            </li>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+<% else %>
+ <div class='flash warning'>Nenhum registro de histórico de solicitação de recursos encontrado.</div>
+<% end %>

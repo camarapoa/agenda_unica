@@ -1,0 +1,14 @@
+<% select_elements 'eventos-new' %>
+
+<div class='box no-box'>
+  <h3>Novo Evento - Reserva de Espaço</h3>
+  <div>
+    <% form_for setup_evento(@evento), :html => { :multipart => true } do |f| %>
+      <%= render 'form', :f => f %>
+      <%= f.submit 'Salvar', :disable_with => 'Aguarde...' %>
+      <ul class='toolbar right'>
+        <li><%= link_to 'Cancelar', session[:eventos_uri] || eventos_path, :icon => :arrow_left %></li>
+      </ul>
+    <% end %>
+  </div>
+</div>

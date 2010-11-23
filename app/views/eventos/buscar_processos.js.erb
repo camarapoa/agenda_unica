@@ -1,0 +1,15 @@
+<% if @processos.size == 0 || !@processos %>
+  jQuery('#processos').html("<li class='warning'>Nenhum processo encontrado.</li>");
+<% else %> 
+  <% if @processos.size > 20 %>
+    jQuery('#processos').html("<li class='warning'>Mais de 20 registros encontrados. Por favor, refine sua busca.</li>");
+  <% else %>
+    jQuery('#processos').html("<%= escape_javascript render(:partial => 'projeto', :collection => @processos) %>");
+  <% end %>   
+<% end %>  
+
+
+
+
+
+

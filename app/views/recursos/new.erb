@@ -1,0 +1,271 @@
+<% title "Solicitação de Materiais, Convocações e Ciência" %>
+
+<ul class='toolbar'>
+  <li><%= link_to 'Voltar à página inicial', session[:eventos_uri] || root_path, :icon => :arrow_left %></li>
+  <li><%= link_to 'Imprimir os dados deste evento', evento_path(@evento, :pdf), :icon => :page_white_acrobat, :target => '_blank' %></li>
+</ul>
+<br />
+<br />
+
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Evento</a></li>
+    <li><a href="#tabs-2">Solicitações de Recursos</a></li>
+    <% if current_user %>
+      <% if (alteracao_evento_permitida?(@evento))&& !@evento.past? %>
+        <li><a href="#tabs-3">Convocações</a></li>
+        <li><a href="#tabs-4">Ciência</a></li>
+        <li><a href="#tabs-5">Confirmação/Cancelamento</a></li>
+      <% end %>
+    <% end %>
+    <li><a href="#tabs-6">Histórico</a></li>
+  </ul>
+   
+  <div id="tabs-1">
+    <%= flash[:message] %>
+    <%= render @evento %>
+  </div>
+   
+  <div id="tabs-2">
+    <div id='add_servico'>
+      <% unless @evento.cancelado? %>
+        <%= flash[:message_material] %>
+      
+        <!-- solicitação só para owners -->
+        <% if current_user %>
+          <% if (alteracao_evento_permitida?(@evento))  && !@evento.past? %>
+            <% if @materiais.any? %>
+              <div class='box'>
+                <h3>Solicitação de Material</h3>
+                <div>
+                  <% form_for :recurso_alocado, :url => create_solicitacao_mat_path(@evento) do |f| %>
+                    <%= error_messages_for :recurso_alocado %>
+                    <% if @materiais_indisponiveis.any? %>
+                      <div>
+                        <p>Alguns materiais estão indisponíveis para solicitação atualmente.</p>
+                        <p>Materiais indisponíveis:</p>
+                        <ul class='list'>
+                          <% @materiais_indisponiveis.each do |material| %>
+                            <li><%= material.nome %></li>
+                          <% end %>
+                        </ul>
+                      </div>
+                      <div class='hr'></div>
+                    <% end %>
+                    
+                    <table class='fieldset'>
+                      <tr>
+                        <td><%= f.label :recurso_evento_id, 'Material:' %></td>
+                        <td><%= f.select :recurso_evento_id, @materiais, :include_blank => true %></td>
+                      </tr>
+                      <tr>
+                        <td><%= f.label :quantidade, 'Quantidade:' %></td>
+                        <td><%= f.text_field :quantidade, :size => 5 %></td>
+                      </tr>
+                      <tr>
+                        <td><%= f.label :observacao, 'Observação:' %></td>
+                        <td><%= f.text_area :observacao, :size => '30x2' %></td>
+                      </tr>
+                    </table>
+                    
+                    <%= submit_tag 'Solicitar' %>
+                  <% end %>
+                </div>
+              </div>
+            <% else %>
+              <div class='flash warning'>Todos os materiais disponíveis já foram solicitados</div>
+            <% end %>
+          <% end %>
+        <% end %>
+      
+        <br />
+      
+        <% if @evento.recursos_alocados.any? %>
+          <table class='list'>
+            <thead>
+              <tr>
+                <th>Quantidade</th>
+                <th>Material</th>    
+                <th>Observação</th>  		
+                <th>Status da Solicitação</th>  		                      
+              </tr>
+            </thead>
+            <tbody>
+              <% for recurso in @evento.recursos_alocados.select { |r| r.recurso_evento.tipo == 'material' } %>
+                <tr class="<%= cycle('odd', 'even') %>">
+                  <td><%= recurso.quantidade %></td>
+                  <td><%= recurso.recurso_evento.nome %></td>
+                  <td><%= recurso.observacao %></td>
+                  <td><span class='<%= class_by_status(recurso.emprestimo_recurso.status)%>'><%= recurso.emprestimo_recurso.status.humanize %></span></td>                  
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <div class='warning'>Não há materiais solicitados para este evento</div>
+        <% end %>
+
+        <ul class='toolbar'>
+          <li><%= link_to 'Ver agendamento do projetor multimídia', agenda_projetor_path(@evento.id), :popup => ['agendamento_proj', 'width=700, height=300, scrollbars=yes'], :icon => :bullet_go %></li>
+        </ul>
+      <% end %>
+      <%= "<br/><div class='warning'>Não é possível solicitar recursos para eventos cancelados</div>" if @evento.cancelado? %>
+    </div>
+  </div><!-- end tabs-2 -->
+  
+  <% if current_user %> 
+    <% if ( alteracao_evento_permitida?(@evento)) && !@evento.past? %>
+      <div id="tabs-3" class='convocacoes'>
+        <% unless @evento.cancelado? %>
+          <%= flash[:message_convocacao] %>
+          <% form_for :convocacao, :url => envia_convocacao_path(@evento.id) do |f| %>
+            <table class='list'>
+              <thead>
+                <tr>
+                  <th style='width:60%'>Setor</th>
+                  <th>E-mails</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <td colspan='2' style='padding:10px 15px'>
+                    <p>
+                      Selecionar:&nbsp;
+                      <%= link_to 'Todos', '#', :id => 'select-all-convocacoes' %>,&nbsp;
+                      <%= link_to 'Nenhum', '#', :id => 'deselect-all-convocacoes' %>
+                    </p>
+                    <p>
+                      <%= submit_tag 'Convocar', :disable_with => 'Enviando...' %>
+                    </p>
+                  </td>
+                </tr>
+              </tfoot>
+              <tbody>
+                <% @recursos_convocacoes.each_with_index do |recurso, index| %>
+                  <tr class="<%= cycle 'odd', 'even' %>">
+                    <td>
+                      <label>
+                        <%= check_box_tag 'convocacoes[]', recurso.id, :checked => true %>
+                        <%= recurso.nome.titleize %>
+                      </label>
+                    </td>
+                    <td><%= recurso.emails %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
+        <% else %>
+          <div class='flash warning'>Não é possível enviar convocações para eventos cancelados.</div>
+        <% end %>
+      </div><!-- end tabs-3 -->
+    <% end %>
+  <% end %>
+  
+  <% if current_user %> 
+    <% if ( alteracao_evento_permitida?(@evento) )&& !@evento.past? %>
+      <div id="tabs-4" class='ciencia'>
+        <% unless @evento.cancelado? %>
+          <%= flash[:message_ciencia] %>
+          <% form_for :ciencia, :url => envia_ciencia_path(@evento.id) do |f| %>
+            <table class='list'>
+              <thead>
+                <tr>
+                  <th style='width:60%'>Setor</th>
+                  <th>E-mails</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <td colspan='2' style='padding:10px 15px'>
+                    <p>
+                      Selecionar:&nbsp;
+                      <%= link_to 'Todos', '#', :id => 'select-all-ciencia' %>,&nbsp;
+                      <%= link_to 'Nenhum', '#', :id => 'deselect-all-ciencia' %>
+                    </p>
+                    <p>
+                      <%= submit_tag 'Convocar', :disable_with => 'Enviando...' %>
+                    </p>
+                  </td>
+                </tr>
+              </tfoot>
+              <tbody>
+                <% @recursos_ciencias.each_with_index do |recurso, index| %>
+                  <tr class="<%= cycle 'odd', 'even' %>">
+                    <td>
+                      <label>
+                        <%= check_box_tag 'ciencias[]', recurso.id,:checked => true %>
+                        <%= recurso.setor_responsavel.nome.titleize %>
+                      </label>
+                    </td>
+                    <td><%= recurso.emails %></td>
+                  </tr> 
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
+        <% else %>
+          <div class='flash warning'>Não é possível enviar ciência para eventos cancelados.</div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <% if current_user %>
+    <% if (alteracao_evento_permitida?(@evento)) && !@evento.past? %>
+      <div id="tabs-5" class='confirmacao'>
+        <% if !@evento.cancelado? && !@evento.past? %>
+          <p>
+            Abaixo você pode confirmar ou cancelar o evento <strong><%= @evento.titulo %></strong>.
+          </p>
+          <p><%= link_to "Desejo confirmar esse evento", confirmar_evento_path(@evento), :confirm => "Confirmar o evento '#{@evento.titulo}'?", :method => :put, :icon => :tick, :class => 'button' %></p>
+          <p><%= link_to "Desejo cancelar esse evento", cancelar_evento_path(@evento), :confirm => "Cancelar o evento '#{@evento.titulo}'?", :method => :put , :icon => :cross, :class => 'button' %></p>
+        <% elsif @evento.cancelado? %>
+          <div class='flash warning'>Não é possível confirmar eventos cancelados.</div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <div id="tabs-6">
+    <%= render '/eventos/historico' %>
+    <br />
+    <%= render '/recursos/historico' %>
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+  jQuery(function($) {
+    $tabs = $('#tabs');
+    
+    $tabs.tabs({ cookie: {} });
+    $('#recurso_alocado_quantidade').numeric();
+    
+    $('#select-all-convocacoes').click(function() {
+      $('> .convocacoes :checkbox', $tabs).attr('checked', true);
+      return false;
+    });
+    
+    $('#select-all-ciencia').click(function() {
+      $('> .ciencia :checkbox', $tabs).attr('checked', true);
+      return false;
+    });
+    
+    $('#deselect-all-convocacoes').click(function() {
+      $('> .convocacoes :checkbox', $tabs).attr('checked', false);
+      return false;
+    });
+    
+    $('#deselect-all-ciencia').click(function() {
+      $('> .ciencia :checkbox', $tabs).attr('checked', false);
+      return false;
+    });
+  });
+  
+  function verifica_disponibilidade(recurso_evento_id, evento_id) {
+    var params = { evento_id: evento_id, recurso_evento_id: recurso_evento_id };
+    jQuery.get('/recursos/verifica_disponibilidade_item', params, 'script');
+  }
+</script>

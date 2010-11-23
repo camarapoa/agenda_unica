@@ -1,0 +1,20 @@
+<style>
+  body { font-family: verdana; font-size: 11px; }
+</style>
+
+<p>Prezado(a) Senhor(a):</p>
+
+Informamos que houve modificação na solicitação de material de responsabilidade de seu setor, conforme abaixo:
+<br/>
+<br/>
+<b>Evento: </b><%= @evento.titulo %><br/>
+<b>Data: </b><%= @evento.data_inicio.strftime('%d/%m/%Y')  %></br>
+<b>Horário: </b><%= @evento.horario_inicio %><br/>
+<b>Modificação: </b><%= @texto %>
+<br/>
+<br/>
+Para maiores informações, consulte a Agenda Única.
+
+<br/>
+<br/>
+<span style='font-size:9px'>desenvolvido pela Assessoria de Informática da CMPA - 2009</span>

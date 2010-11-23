@@ -1,0 +1,88 @@
+<h3 class='title'><%= evento.tipo_evento.nome %> - <%= evento.titulo%> (evento <%= evento.status %>)</h3>
+
+<table class='attributes'>
+  <tr>
+    <th>Local</th>
+    <% local = "#{@evento.local.nome}" if @evento.local %>
+    <% local = @evento.outro_local if !@evento.local %>
+    <td><%= local %></td>
+  </tr>
+  <tr>
+    <th>Categoria</th>
+    <td><%= evento.categoria %></td>
+  </tr>
+  <tr>
+    <th>Data</th>
+    <td><%= periodo(evento) %></td>
+  </tr>
+  <tr>
+    <th>Setor Solicitante</th>
+    <td><%= evento.setor_solicitante.nome if evento.setor_solicitante  %></td>
+  </tr>
+  <tr>
+    <th>Descrição</th>
+    <td><%= RedCloth.new(evento.descricao).to_html %></td>
+  </tr>
+  <tr>
+    <th>Proponente</th>
+    <td><%= evento.proponente %></td>
+  </tr>
+  <tr>
+    <th>Coordenador</th>
+    <td><%= evento.coordenador %></td>
+  </tr>
+  <tr>
+    <th>Contato</th>
+    <td><%= evento.contato %></td>
+  </tr>
+  <tr>
+    <th>Necessidades</th>
+    <td><%= evento.observacao %></td>
+  </tr>
+
+  <% if evento.projeto %>
+    <tr>
+      <th>Processo</th>
+      <td><%= "#{evento.projeto.numero}/#{evento.projeto.ano} (#{evento.projeto.ementa.downcase})" %></td>
+    </tr>
+  <% end %>
+
+  <tr>
+    <th>Documento</th>
+    <td><%= evento.documento %></td>
+  </tr>
+</table>
+
+<% if evento.assets.any? { |asset| !asset.new_record? } %>
+  <br />
+  <h3>Documentos associados ao evento</h3>
+  <table id='assets' class='list'>
+    <% @evento.assets.each do |asset| %>
+      <% unless asset.new_record? %>
+        <tr class="<%= cycle 'odd', 'even' %>">
+          <td>
+            <% link_to asset.data.url, :target => '_blank', :class => 'icon icon-external-link right' do %>
+              <%= truncate asset.data_file_name.humanize, :length => 60 %>
+              (<%= number_to_human_size asset.data_file_size %>)
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+<% end %>
+
+<div class='origem'>
+  <%= origem_evento(evento )%>
+</div>
+
+<% if current_user %>
+  <% if alteracao_evento_permitida?(evento)  && !evento.past? && !evento.cancelado? %>
+    <ul class='toolbar'>
+      <% unless evento.cancelado? %>
+        <li><%= link_to 'Desejo alterar dados deste evento', edit_evento_path(evento), :icon => :application_form_edit %></li>
+      <% end %>
+      <li><%= link_to 'Desejo remover este evento', evento, :confirm => "Remover o evento '#{evento.titulo}'?", :method => :delete, :icon => :cross %></li>
+    </ul>
+  <% end %>
+<% end %>

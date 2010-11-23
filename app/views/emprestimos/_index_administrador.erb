@@ -1,0 +1,93 @@
+<ul class='toolbar'>
+  <li><%= link_to 'Voltar à página inicial', session[:eventos_uri] || root_path, :icon => :arrow_left %></li>
+</ul>
+<br />
+<br />
+
+<%= flash_messages flash %>
+<h3>Solicitações Por Atender</h3>
+<% if @emprestimos.any? %>  
+  <table class='list'>
+    <thead>
+      <tr>
+      	<th style='text-align:left'>Status</th>
+        <th style='text-align:left'>Dt Solicitação</th>
+        <th style='text-align:left'>Setor</th>
+        <th style='text-align:left'>Espaço</th>
+        <th style='text-align:left'>Dt Utilização</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @emprestimos.each do |emprestimo| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+      	<td><span class='<%= class_by_status(emprestimo.status_real)%>'><%= emprestimo.status_real.humanize %></span></td> 
+        <td><%= emprestimo.created_on.strftime('%d/%m/%Y %H:%M:%S') %></td>
+        <td><%= emprestimo.setor_solicitante.nome %></td>
+        <td><%= emprestimo.espaco.nome %></td>
+        <td><%= "#{emprestimo.data_inicio.strftime('%d/%m/%Y')} - de #{emprestimo.horario_inicio} às #{emprestimo.horario_termino}" %></td>                
+        <td><%= link_to "Detalhes", emprestimo,  :title => "Detalhes do empréstimo" %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>  
+Não há solicitações por atender<br/><br/>
+<% end %>
+
+	<br/>
+	<br/>
+
+<h3>Solicitações Aguardando Autorização Superior</h3>
+<% if @emprestimos_aguardando_autorizacao_superior.any? %>  
+	<br/>
+	<br/>
+  <table class='list'>
+    <thead>
+      <tr>
+        <th style='text-align:left'>Dt Solicitação</th>
+        <th style='text-align:left'>Setor</th>
+        <th style='text-align:left'>Espaço</th>
+        <th style='text-align:left'>Dt Utilização</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @emprestimos_aguardando_autorizacao_superior.each do |emprestimo| %>
+      <tr class="<%= cycle 'odd', 'even' %>">
+        <td><%= emprestimo.created_on.strftime('%d/%m/%Y %H:%M:%S') %></td>
+        <td><%= emprestimo.setor_solicitante.nome %></td>
+        <td><%= emprestimo.espaco.nome %></td>
+        <td><%= "#{emprestimo.data_inicio.strftime('%d/%m/%Y')} - de #{emprestimo.horario_inicio} às #{emprestimo.horario_termino}" %></td>                
+        <td><%= link_to "Detalhes", emprestimo, :icon => :application_view_detail, :title => "Detalhes do empréstimo" %></td>
+      </tr>
+    <% end %>
+  </table>
+  <% else %>  
+Não há solicitações aguardando autorização superior<br/><br/>
+<% end %>
+
+	<br/>
+	<br/>
+
+<h3>Últimas Solicitações Gerenciadas ou Vencidas</h3>
+
+<table class='list'>
+  <thead>
+    <tr>
+      <th style='text-align:left'>Status</th>
+      <th style='text-align:left'>Dt Solicitação</th>
+      <th style='text-align:left'>Setor</th>
+      <th style='text-align:left'>Espaço</th>
+      <th style='text-align:left'>Dt Utilização</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @ultimas_solicitacoes.each do |emprestimo| %>
+    <tr class="<%= cycle 'odd', 'even' %>">
+      <td><span class='<%= class_by_status(emprestimo.status_real)%>'><%= emprestimo.status_real.humanize %></span></td>        	
+      <td><%= emprestimo.created_on.strftime('%d/%m/%Y %H:%M:%S') %></td>
+      <td><%= emprestimo.setor_solicitante.nome %></td>
+      <td><%= emprestimo.espaco.nome %></td>
+      <td><%= "#{emprestimo.data_inicio.strftime('%d/%m/%Y')} - de #{emprestimo.horario_inicio} às #{emprestimo.horario_termino}" %></td>
+      <td><%= link_to "Detalhes", emprestimo, :icon => :application_view_detail, :title => 'Detalhes do empréstimo' %></td>
+    </tr>
+  <% end %>
+</table>

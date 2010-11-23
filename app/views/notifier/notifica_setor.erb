@@ -1,0 +1,70 @@
+<style>
+#notificacao{font-family:verdana;font-size:12px}
+#notificacao .value{font-weight:bold;}
+table{font-size:13px}
+table.detalhes_evento{}
+table.servicos{margin-left:15px}
+.odd{background-color:#FFF}
+.even{background-color:#E9E9E9}
+td.caption{font-weight:bold}
+  
+</style>
+<div id='notificacao'>
+<b>Agenda - Notificação automática de solicitação de serviços</b><br/>
+<b>Não responda esta mensagem</b>
+<br/>
+<br/>
+
+<table class='detalhes_evento'>
+  <tr>
+    <td class='caption'>Evento</td>
+    <td><%= @evento.tipo_evento.nome %></td>
+  </tr>
+  <tr>
+    <td class='caption'>Título</td>
+    <td><%= @evento.titulo %></td>
+  </tr>
+  <tr>
+    <td class='caption'>Data</td>
+    <td><%= periodo(@evento) %></td>
+  </tr>  
+  <tr>
+    <td class='caption'>Local</td>
+    <% local = "#{@evento.local.nome}" if @evento.local %>
+		<% local = @evento.outro_local if !@evento.local %>
+    <td><%= local %></td>
+  </tr>  
+  <tr>
+    <td class='caption'>Responsável</td>
+    <td><%=  %></td>
+  </tr>    
+  <tr>
+    <td class='caption'>Contato</td>
+    <td><%= @evento.contato %></td>
+  </tr>    
+  
+</table>
+
+<br/>
+Serviços solicitados a sua área: <br/><br/>
+<table class='servicos'>
+  <tr>
+    <th align='left'>Serviço</th>
+    <th>Quantidade</th>
+    <th align='left'>Observação</th>
+  </tr>    
+<% for es in @eventos_servicos do %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%= es.servico.nome %></td>
+    <td><%= es.quantidade %></td>
+    <td><%= es.observacao %></td>      
+  </tr>
+<% end %>
+</table>
+
+<br/>
+<br/>
+<hr/>
+<br/>
+Desenvolvido pela Assessoria de Informática - 2008
+</div>

@@ -1,0 +1,1283 @@
+# Logfile created on Thu Jul 22 17:50:40 -0300 2010
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:35:45) [GET]
+  Parameters: {"action"=>"meus_eventos", "controller"=>"eventos"}
+Rendering template within layouts/application
+Rendering eventos/meus_eventos
+
+ActionView::TemplateError (undefined method `nome' for nil:NilClass) on line #23 of app/views/eventos/meus_eventos.erb:
+20:       <tr class="<%= cycle 'odd', 'even' %>">
+21:       	<td><span class='<%= class_by_status(evento.status)%>'><%= evento.status.humanize %></span></td> 
+22:         <td><%= evento.created_at.strftime('%d/%m/%Y %H:%M:%S') %></td>
+23:         <td><%= evento.setor_solicitante.nome %></td>
+24:         <td><%= evento.local.nome %></td>
+25:         <td><%= "#{evento.data_inicio.strftime('%d/%m/%Y')} - de #{evento.horario_inicio} às #{evento.horario_termino}" %></td>                
+26:         <td><%= link_to "Detalhes", new_evento_recurso_path(evento), :title => "Detalhes do evento" %></td>
+
+    app/views/eventos/meus_eventos.erb:23
+    app/views/eventos/meus_eventos.erb:19:in `each'
+    app/views/eventos/meus_eventos.erb:19
+    c:/ruby/lib/ruby/gems/1.8/gems/will_paginate-2.2.2/lib/will_paginate/view_helpers.rb:125:in `paginated_section'
+    app/views/eventos/meus_eventos.erb:7
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:35:47) [GET]
+  Parameters: {"action"=>"meus_eventos", "controller"=>"eventos"}
+Rendering template within layouts/application
+Rendering eventos/meus_eventos
+
+ActionView::TemplateError (undefined method `nome' for nil:NilClass) on line #23 of app/views/eventos/meus_eventos.erb:
+20:       <tr class="<%= cycle 'odd', 'even' %>">
+21:       	<td><span class='<%= class_by_status(evento.status)%>'><%= evento.status.humanize %></span></td> 
+22:         <td><%= evento.created_at.strftime('%d/%m/%Y %H:%M:%S') %></td>
+23:         <td><%= evento.setor_solicitante.nome %></td>
+24:         <td><%= evento.local.nome %></td>
+25:         <td><%= "#{evento.data_inicio.strftime('%d/%m/%Y')} - de #{evento.horario_inicio} às #{evento.horario_termino}" %></td>                
+26:         <td><%= link_to "Detalhes", new_evento_recurso_path(evento), :title => "Detalhes do evento" %></td>
+
+    app/views/eventos/meus_eventos.erb:23
+    app/views/eventos/meus_eventos.erb:19:in `each'
+    app/views/eventos/meus_eventos.erb:19
+    c:/ruby/lib/ruby/gems/1.8/gems/will_paginate-2.2.2/lib/will_paginate/view_helpers.rb:125:in `paginated_section'
+    app/views/eventos/meus_eventos.erb:7
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:36:55) [GET]
+  Parameters: {"action"=>"meus_eventos", "controller"=>"eventos"}
+Rendering template within layouts/application
+Rendering eventos/meus_eventos
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+
+ActionView::TemplateError (undefined method `nome' for nil:NilClass) on line #24 of app/views/eventos/meus_eventos.erb:
+21:       	<td><span class='<%= class_by_status(evento.status)%>'><%= evento.status.humanize %></span></td> 
+22:         <td><%= evento.created_at.strftime('%d/%m/%Y %H:%M:%S') %></td>
+23:         <td><%= evento.setor_solicitante.try("nome") %></td>
+24:         <td><%= evento.local.nome %></td>
+25:         <td><%= "#{evento.data_inicio.strftime('%d/%m/%Y')} - de #{evento.horario_inicio} às #{evento.horario_termino}" %></td>                
+26:         <td><%= link_to "Detalhes", new_evento_recurso_path(evento), :title => "Detalhes do evento" %></td>
+27:       </tr>
+
+    app/views/eventos/meus_eventos.erb:24
+    app/views/eventos/meus_eventos.erb:19:in `each'
+    app/views/eventos/meus_eventos.erb:19
+    c:/ruby/lib/ruby/gems/1.8/gems/will_paginate-2.2.2/lib/will_paginate/view_helpers.rb:125:in `paginated_section'
+    app/views/eventos/meus_eventos.erb:7
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:37:15) [GET]
+  Parameters: {"action"=>"meus_eventos", "controller"=>"eventos"}
+Rendering template within layouts/application
+Rendering eventos/meus_eventos
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from paginated_section at c:/ruby/lib/ruby/gems/1.8/gems/will_paginate-2.2.2/lib/will_paginate/view_helpers.rb:126)
+Completed in 656ms (View: 78, DB: 406) | 200 OK [http://localhost/eventos/meus_eventos]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:37:37) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:37:37) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:37:37) [GET]
+  Parameters: {"action"=>"meus_eventos", "page"=>"2", "controller"=>"eventos"}
+Rendering template within layouts/application
+Rendering eventos/meus_eventos
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from paginated_section at c:/ruby/lib/ruby/gems/1.8/gems/will_paginate-2.2.2/lib/will_paginate/view_helpers.rb:126)
+Completed in 781ms (View: 203, DB: 375) | 200 OK [http://localhost/eventos/meus_eventos?page=2]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:37:39) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:37:39) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:38:15) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:38:16) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:38:16) [GET]
+  Parameters: {"action"=>"meus_eventos", "page"=>"3", "controller"=>"eventos"}
+Rendering template within layouts/application
+Rendering eventos/meus_eventos
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from paginated_section at c:/ruby/lib/ruby/gems/1.8/gems/will_paginate-2.2.2/lib/will_paginate/view_helpers.rb:126)
+Completed in 734ms (View: 156, DB: 375) | 200 OK [http://localhost/eventos/meus_eventos?page=3]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:38:17) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:38:17) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:38:46) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:38:46) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:38:46) [GET]
+  Parameters: {"action"=>"meus_eventos", "page"=>"4", "controller"=>"eventos"}
+Rendering template within layouts/application
+Rendering eventos/meus_eventos
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from paginated_section at c:/ruby/lib/ruby/gems/1.8/gems/will_paginate-2.2.2/lib/will_paginate/view_helpers.rb:126)
+Completed in 859ms (View: 219, DB: 375) | 200 OK [http://localhost/eventos/meus_eventos?page=4]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:38:47) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:38:48) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:38:57) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:38:57) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:38:57) [GET]
+  Parameters: {"action"=>"meus_eventos", "page"=>"7", "controller"=>"eventos"}
+Rendering template within layouts/application
+Rendering eventos/meus_eventos
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from paginated_section at c:/ruby/lib/ruby/gems/1.8/gems/will_paginate-2.2.2/lib/will_paginate/view_helpers.rb:126)
+Completed in 671ms (View: 172, DB: 422) | 200 OK [http://localhost/eventos/meus_eventos?page=7]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:38:58) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:38:58) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:39:03) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:39:03) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:39:03) [GET]
+  Parameters: {"action"=>"meus_eventos", "page"=>"6", "controller"=>"eventos"}
+Rendering template within layouts/application
+Rendering eventos/meus_eventos
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from paginated_section at c:/ruby/lib/ruby/gems/1.8/gems/will_paginate-2.2.2/lib/will_paginate/view_helpers.rb:126)
+Completed in 749ms (View: 203, DB: 422) | 200 OK [http://localhost/eventos/meus_eventos?page=6]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:39:04) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:39:04) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:39:07) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:39:07) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:39:07) [GET]
+  Parameters: {"action"=>"meus_eventos", "page"=>"5", "controller"=>"eventos"}
+Rendering template within layouts/application
+Rendering eventos/meus_eventos
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from paginated_section at c:/ruby/lib/ruby/gems/1.8/gems/will_paginate-2.2.2/lib/will_paginate/view_helpers.rb:126)
+Completed in 749ms (View: 172, DB: 422) | 200 OK [http://localhost/eventos/meus_eventos?page=5]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:39:08) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:39:08) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:39:17) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:39:17) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:39:17) [GET]
+  Parameters: {"action"=>"meus_eventos", "page"=>"6", "controller"=>"eventos"}
+Rendering template within layouts/application
+Rendering eventos/meus_eventos
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from paginated_section at c:/ruby/lib/ruby/gems/1.8/gems/will_paginate-2.2.2/lib/will_paginate/view_helpers.rb:126)
+Completed in 843ms (View: 219, DB: 422) | 200 OK [http://localhost/eventos/meus_eventos?page=6]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:39:18) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:39:18) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:40:01) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:40:01) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing SessionsController#destroy (for 127.0.0.1 at 2010-08-10 09:40:01) [DELETE]
+  Parameters: {"action"=>"destroy", "_method"=>"delete", "controller"=>"sessions"}
+Redirected to http://localhost:3000/
+Completed in 0ms (DB: 0) | 302 Found [http://localhost/session]
+
+
+Processing EventosController#index (for 127.0.0.1 at 2010-08-10 09:40:01) [GET]
+  Parameters: {"action"=>"index", "controller"=>"eventos"}
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Rendering template within layouts/application
+Rendering eventos/index
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Completed in 266ms (View: 78, DB: 31) | 200 OK [http://localhost/]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:40:02) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_in.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing EventosController#index (for 127.0.0.1 at 2010-08-10 09:40:28) [GET]
+  Parameters: {"action"=>"index", "controller"=>"eventos"}
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Rendering template within layouts/application
+Rendering eventos/index
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Completed in 281ms (View: 78, DB: 47) | 200 OK [http://localhost/]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:40:30) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_in.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:40:30) [GET]
+  Parameters: {"action"=>"meus_eventos", "controller"=>"eventos"}
+Redirected to http://localhost:3000/session/entrar
+Filter chain halted as [:cmpa_authenticate] rendered_or_redirected.
+Completed in 47ms (DB: 0) | 302 Found [http://localhost/eventos/meus_eventos]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2010-08-10 09:40:30) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/sessions
+Rendering sessions/new
+Completed in 62ms (View: 47, DB: 0) | 200 OK [http://localhost/session/entrar]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2010-08-10 09:40:34) [POST]
+  Parameters: {"action"=>"create", "controller"=>"sessions", "login"=>"chuvisco", "password"=>"[FILTERED]"}
+Warning: SQLServer :lock option 'nil' not supported
+Rendering sessions/lotacoes_temporarias
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Completed in 500ms (View: 406, DB: 0) | 200 OK [http://localhost/session]
+
+
+Processing SessionsController#set_lotacao_temporaria (for 127.0.0.1 at 2010-08-10 09:40:36) [GET]
+  Parameters: {"action"=>"set_lotacao_temporaria", "controller"=>"sessions", "lotacao_temporaria_id"=>"15"}
+Warning: SQLServer :lock option 'nil' not supported
+Redirected to http://localhost:3000/
+Completed in 62ms (DB: 0) | 302 Found [http://localhost/session/set_lotacao_temporaria/15]
+
+
+Processing SessionsController#set_lotacao_temporaria (for 127.0.0.1 at 2010-08-10 09:40:36) [GET]
+  Parameters: {"action"=>"set_lotacao_temporaria", "controller"=>"sessions", "lotacao_temporaria_id"=>"15"}
+Warning: SQLServer :lock option 'nil' not supported
+Redirected to http://localhost:3000/
+Completed in 62ms (DB: 0) | 302 Found [http://localhost/session/set_lotacao_temporaria/15]
+
+
+Processing EventosController#index (for 127.0.0.1 at 2010-08-10 09:40:36) [GET]
+  Parameters: {"action"=>"index", "controller"=>"eventos"}
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Rendering template within layouts/application
+Rendering eventos/index
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Completed in 391ms (View: 187, DB: 31) | 200 OK [http://localhost/]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:40:37) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:40:38) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/page_white_acrobat.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:40:38) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/bullet_go.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:40:38) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:40:38) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/page_white_acrobat.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:40:39) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/bullet_go.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:40:39) [GET]
+  Parameters: {"action"=>"meus_eventos", "controller"=>"eventos"}
+Rendering template within layouts/application
+Rendering eventos/meus_eventos
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from paginated_section at c:/ruby/lib/ruby/gems/1.8/gems/will_paginate-2.2.2/lib/will_paginate/view_helpers.rb:126)
+Completed in 1297ms (View: 203, DB: 781) | 200 OK [http://localhost/eventos/meus_eventos]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:40:40) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:40:40) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/page_white_acrobat.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:40:40) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/bullet_go.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:40:41) [GET]
+  Parameters: {"action"=>"meus_eventos", "controller"=>"eventos"}
+Rendering template within layouts/application
+Rendering eventos/meus_eventos
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+DEPRECATION WARNING: The binding argument of #concat is no longer needed.  Please remove it from your views and helpers.. (called from paginated_section at c:/ruby/lib/ruby/gems/1.8/gems/will_paginate-2.2.2/lib/will_paginate/view_helpers.rb:126)
+Completed in 844ms (View: 328, DB: 422) | 200 OK [http://localhost/eventos/meus_eventos]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:40:42) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:40:43) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:40:58) [GET]
+  Parameters: {"action"=>"meus_eventos", "controller"=>"eventos"}
+Warning: SQLServer :lock option 'nil' not supported
+Rendering template within layouts/application
+Rendering eventos/meus_eventos
+Completed in 344ms (View: 125, DB: 31) | 200 OK [http://localhost/eventos/meus_eventos]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:16) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:17) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing EventosController#meus_eventos (for 127.0.0.1 at 2010-08-10 09:45:17) [GET]
+  Parameters: {"action"=>"meus_eventos", "controller"=>"eventos"}
+Warning: SQLServer :lock option 'nil' not supported
+Rendering template within layouts/application
+Rendering eventos/meus_eventos
+Completed in 297ms (View: 125, DB: 16) | 200 OK [http://localhost/eventos/meus_eventos]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:18) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:18) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:19) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_out.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:20) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing SessionsController#destroy (for 127.0.0.1 at 2010-08-10 09:45:20) [DELETE]
+  Parameters: {"action"=>"destroy", "_method"=>"delete", "controller"=>"sessions"}
+Redirected to http://localhost:3000/
+Completed in 0ms (DB: 0) | 302 Found [http://localhost/session]
+
+
+Processing EventosController#index (for 127.0.0.1 at 2010-08-10 09:45:20) [GET]
+  Parameters: {"action"=>"index", "controller"=>"eventos"}
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Rendering template within layouts/application
+Rendering eventos/index
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Completed in 188ms (View: 63, DB: 78) | 200 OK [http://localhost/]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:21) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_in.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:29) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_in.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing EventosController#index (for 127.0.0.1 at 2010-08-10 09:45:30) [GET]
+  Parameters: {"month"=>"08", "action"=>"index", "day"=>"16", "year"=>"2010", "controller"=>"eventos"}
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Rendering template within layouts/application
+Rendering eventos/index
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Completed in 719ms (View: 563, DB: 125) | 200 OK [http://localhost/eventos?day=16&month=08&year=2010]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:31) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_in.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:35) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_in.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing RecursosController#new (for 127.0.0.1 at 2010-08-10 09:45:35) [GET]
+  Parameters: {"action"=>"new", "evento_id"=>"1220", "controller"=>"recursos"}
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Rendering template within layouts/application
+Rendering recursos/new
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Completed in 1407ms (View: 938, DB: 188) | 200 OK [http://localhost/eventos/1220/recursos/cadastrar]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:37) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_in.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:37) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:38) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/page_white_acrobat.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:38) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/bullet_go.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:56) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/door_in.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:56) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/arrow_left.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:56) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/page_white_acrobat.png%3F1270758470" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-08-10 09:45:56) [GET]
+
+ActionController::RoutingError (No route matches "/images/icons/16x16/bullet_go.png%3F1270758469" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing RecursosController#new (for 127.0.0.1 at 2010-08-10 10:36:34) [GET]
+  Parameters: {"action"=>"new", "evento_id"=>"1220", "controller"=>"recursos"}
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Rendering template within layouts/application
+Rendering recursos/new
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Completed in 906ms (View: 438, DB: 109) | 200 OK [http://localhost/eventos/1220/recursos/cadastrar]
+
+
+Processing EventosController#buscar_eventos (for 127.0.0.1 at 2010-08-17 09:53:55) [GET]
+  Parameters: {"evento"=>{"data_termino"=>"18/08/2010", "tipo_evento_id"=>"", "data_inicio"=>"17/08/2010", "status"=>""}, "commit"=>"Buscar", "action"=>"buscar_eventos", "controller"=>"eventos"}
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Rendering template within layouts/application
+Rendering eventos/buscar_eventos
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Completed in 438ms (View: 297, DB: 78) | 200 OK [http://localhost/eventos/buscar_eventos?evento%5Bdata_inicio%5D=17%2F08%2F2010&evento%5Bdata_termino%5D=18%2F08%2F2010&evento%5Btipo_evento_id%5D=&evento%5Bstatus%5D=&commit=Buscar]
+
+
+Processing EventosController#impressao to pdf (for 127.0.0.1 at 2010-08-17 09:53:58) [GET]
+  Parameters: {"evento"=>{"data_termino"=>"18/08/2010", "tipo_evento_id"=>"", "data_inicio"=>"17/08/2010", "status"=>""}, "format"=>"pdf", "action"=>"impressao", "controller"=>"eventos"}
+Warning: SQLServer :lock option 'nil' not supported
+Rendering eventos/impressao
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Warning: SQLServer :lock option 'nil' not supported
+Completed in 625ms (View: 578, DB: 31) | 200 OK [http://localhost/eventos/impressao?evento%5Bdata_inicio%5D=17%2F08%2F2010&evento%5Bdata_termino%5D=18%2F08%2F2010&evento%5Bstatus%5D=&evento%5Btipo_evento_id%5D=&format=pdf]

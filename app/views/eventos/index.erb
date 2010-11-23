@@ -1,0 +1,134 @@
+<table class='columns-2'>
+  <tr>
+    <td style='padding-right:2em; width:20%;'>
+      <div class='box'>
+        <h3>Calendário</h3>
+        <div>
+          <div id='datepicker'></div>
+        </div>
+      </div>
+
+      <div class='box'>
+        <h3>Busca por Eventos</h3>
+        <div>
+          <div class='sidebar-form'>
+            <% form_for :evento, @evento, :url => {:action => 'buscar_eventos'}, :html => {:id => "form_busca",  :method => :get } do |f| %>
+              <%= error_messages_for :evento, :header_message => nil, :message => "Verifique os campos da busca" %>
+
+              <p>
+                <%= f.label :data_inicio, 'Data de início' %>
+                <%= f.text_field :data_inicio, :size => 12 , :value => '', :class => 'date required' %>
+              </p>
+              <p>
+                <%= f.label :data_termino, 'Data de término' %>
+                <%= f.text_field :data_termino, :size => 12 , :class => 'date required' %>
+              </p>
+              <p>
+                <%= f.label :tipo_evento_id, 'Tipo de evento' %>
+                <%= f.select :tipo_evento_id, @tipos_eventos.map { |te| [truncate(te.nome, :length => 27), te.id] }, :include_blank => true %>
+              </p>
+              <p>
+                <%= f.label :status %>
+                <%= f.select :status, Evento::STATUS, :include_blank => true %>
+              </p>
+
+              <ul>
+                <li><%= f.submit 'Buscar' %></li>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </td>
+
+    <td>
+    	<ul class='toolbar'>
+    		<li>
+            <%= link_to 'Legenda', '#legenda', :icon => :bullet_go %>
+            <%= render :partial => 'legenda' %>
+      <% if current_lotacao && (operador? || current_lotacao.role_of_administrador_agenda?) %>
+        
+          <% if @hash_eventos.any? %>
+            <li><%= link_to 'Imprimir eventos do dia', eventos_path(:day => params[:day], :month => params[:month], :year => params[:year], :tipo_relatorio => :por_dia, :format => :pdf), :icon => :page_white_acrobat , :target => '_blank' %></li>
+          <% end %>
+          
+          </li>
+        
+      <% end %>
+      </ul>
+        <br />
+        <br />
+
+      <h2><%=l @data_busca, :format => :detail %></h2>
+      
+      <div id='agenda-do-dia' class='box no-box'>
+        <div>
+          <% @hash_eventos.each do |categoria, eventos| %>
+            <dl class='categoria'>
+              <dt class='categoria'><span><%= categoria %></span></dt>
+              <% hash_horarios = eventos.group_by(&:horario_inicio) %>
+              <% last_horario = hash_horarios.keys.last %>
+              <% hash_horarios.each do |horario, eventos_horario|%>
+                <dl class='evento <%= "last" if horario == last_horario %>'>
+                  <div style='position:relative; top:-10px'>
+                    <div class='horizontal-indentation-line'></div>
+                    <dt><%= horario %></dt>
+                  </div>
+                  <ul>
+                    <% eventos_horario.each do |evento| %>
+                      <% local = "#{evento.local.nome}" if evento.local %>
+                      <% local = evento.outro_local if !evento.local %>
+                      <% texto = "#{evento.tipo_evento.nome} - #{evento.titulo} (#{local})"%>
+                      <li class='<%= class_by_status evento.status %>'><%= link_to texto, new_evento_recurso_path(evento) %></li>
+                    <% end %>
+                  </ul>
+                </dl>
+              <% end %>
+            </dl>
+          <% end %>
+  
+          <%= "Nenhum evento agendado para a data" if @hash_eventos.size == 0 %>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  jQuery(function($) {
+    // ==============
+    // = Datepicker =
+    // ==============
+    $("#datepicker").datepicker({
+      onSelect: function(date) {
+        var day = date.split('/')[0];
+        var month = date.split('/')[1];
+        var year = date.split('/')[2];
+        window.location = "/eventos?day=" + day + '&month=' + month + '&year=' + year;
+      }
+    });
+
+    if ("<%= params[:year] %>".length > 0) {
+      $('#datepicker').datepicker('setDate',
+        new Date("<%= params[:month] %>" + "/" + "<%= params[:day] %>" + "/" + "<%= params[:year] %>")
+      );
+    }
+    
+    $("#form_busca").validate();
+    
+    // ==================
+    // = Legenda dialog =
+    // ==================
+    $('#legenda').dialog({
+      autoOpen: false,
+      modal: true,
+      width: 400,
+      minHeight: 10,
+      resizable: false
+    });
+    $('a[href="#legenda"]').click(function() {
+      $('#legenda').dialog('open');
+      return false;
+    });
+  });
+</script>

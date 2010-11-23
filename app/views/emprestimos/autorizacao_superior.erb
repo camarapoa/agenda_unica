@@ -1,0 +1,50 @@
+<div class='box'>
+  <h3>Autorização de Solicitação de Espaço</h3>
+  <div>
+    <% form_for @emprestimo do |f| %>
+      <table class='attributes'>
+        <tr>
+          <th>Setor Solicitante:</th>
+          <td><%= @emprestimo.setor_solicitante.nome %></td>
+        </tr>
+        <tr>
+          <th>Data da solicitação:</th>
+          <td><%= @emprestimo.created_on.strftime('%d/%m/%Y %H:%M:%S') %></td>
+        </tr>
+        <tr>
+          <th>Espaço:</th>
+          <td><%= @emprestimo.espaco.nome %></td>
+        </tr>
+        <tr>
+          <th>Data de utilização:</th>
+          <td><%= "#{@emprestimo.data_inicio.strftime('%d/%m/%Y')} - de #{@emprestimo.horario_inicio} às #{@emprestimo.horario_termino}" %></td>
+        </tr>
+        <tr>
+          <th>Descrição:</th>
+          <td><%= @emprestimo.descricao %></td>
+        </tr>
+        <tr>
+          <th>Proponente:</th>
+          <td><%= @emprestimo.proponente %></td>
+        </tr>
+        <tr>
+          <th>Contato:</th>
+          <td><%= @emprestimo.contato %></td>
+        </tr>
+      </table>
+      
+      <%= f.error_messages %>
+      <table class='attributes'>
+        <tr>
+          <td><%= f.label :resultado, 'Justificativa da Autorização:' %></td>
+          <td><%= f.text_area :resultado, :size => '80 x 5' %></td>
+        </tr>
+      </table>  
+      
+      <%= f.submit 'Autorizar o empréstimo', :value => 'autorizacao_superior',  :disable_with => 'Aguarde...' %>
+      <ul class='toolbar right'>
+        <li><%= link_to 'Cancelar', back_path_or(emprestimos_path), :icon => :arrow_left %></li>
+      </ul>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<li numero="<%= projeto.numero.strip %>" ano="<%= projeto.ano %>" processo_id="<%= projeto.id %>" title="<%= projeto.ementa %>">
+  <%= link_to '[selecionar]', '#', :class => 'select-processo' %>
+  <%= projeto.numero %>/<%= projeto.ano%> - <%= truncate projeto.ementa, :length => 50 %>
+</li>

@@ -1,0 +1,103 @@
+<table class='columns-2'>
+  <tr>
+    <td style='padding-right:2em; width:20%;'>
+      <div class='box-1'>
+        <h3>Calendário</h3>
+        <div>
+          <div id='datepicker'></div>
+        </div>
+      </div>
+      
+      <div class='box-1'>
+        <h3>Busca por Eventos</h3>
+        <div>
+          <div class='sidebar-form'>
+            <% form_for :evento, @evento, :url => {:action => 'buscar_eventos'}, :html => {:id => "form_busca",  :method => :get } do |f| %>
+              <%= error_messages_for :evento, :header_message => nil, :message => "Verifique os campos da busca" %>
+              
+             <p>
+                <%= f.label :data_inicio, 'Data de início' %>
+                <%= f.text_field :data_inicio, :size => 12 , :class => 'date required' %>
+              </p>
+            
+              <p>
+                <%= f.label :data_termino, 'Data de término' %>
+                <%= f.text_field :data_termino, :size => 12 , :class => 'date required' %>
+              </p>
+              
+              <p>
+                <%= f.label :tipo_evento_id, 'Tipo de evento' %>
+                <%= f.select :tipo_evento_id, @tipos_eventos.map { |te| [truncate(te.nome, :length => 27), te.id] }, :include_blank => true %>
+              </p>
+              
+              <p>
+                <%= f.label :status %>
+                <%= f.select :status, Evento::STATUS, :include_blank => true %>
+              </p>
+              
+              <ul>
+                <li><%= f.submit 'Buscar' %></li>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+      </div>      
+    </td>
+  
+    <td>
+
+      <div id='agenda-do-dia'>      	
+      	Resultado da Busca <i>(<%= @eventos.size %> evento(s) encontrado(s))</i>      	
+      	<% if @eventos.size > 0 %>
+      	<br/>
+      	<br/>
+      	<p><%= (link_to "Imprimir eventos listados", impressao_path(:evento => params[:evento], :format => :pdf), :class => 'right icon icon-external-link' , :target => '_blank') if @hash_eventos.size > 0 %></p>
+      	
+	        <% @hash_eventos.each do |categoria, eventos| %>
+	          <dl class='categoria'>
+	            <dt><span><%= categoria %></span></dt>
+	            <% hash_horarios = eventos.group_by(&:horario_inicio) %>
+	            <% hash_horarios.each do |horario, eventos_horario|%>
+	              <dl class='evento'>
+	                <dt><%= horario %></dt>
+	                <table>
+	                <% eventos_horario.each do |evento| %>
+	                	<% local = "#{evento.local.nome}" if evento.local %>                	
+										<% local = evento.outro_local if !evento.local %>
+	                  <% texto = "#{evento.tipo_evento.nome} - #{evento.titulo} (#{local})"%>                  
+	                  <tr class="<%= cycle 'odd', 'even' %>"><td class='<%= class_by_status(evento.status)%>'><%= link_to texto, new_evento_recurso_path(evento)  %></td></tr>
+	                <% end %>
+	                </table>
+	                </dt>
+	              </dl>
+	            <% end %>
+	          </dl>
+	        <% end %>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  jQuery(function($) {
+    $("#datepicker").datepicker({
+      onSelect: function(date) {
+        var day = date.split('/')[0];
+        var month = date.split('/')[1];
+        var year = date.split('/')[2];
+        window.location = "/eventos?day=" + day + '&month=' + month + '&year=' + year;
+      }
+    });
+    
+    if ("<%= params[:year] %>".length > 0) {
+      $('#datepicker').datepicker('setDate',
+        new Date("<%= params[:month] %>" + "/" + "<%= params[:day] %>" + "/" + "<%= params[:year] %>")
+      );
+    }
+  });
+  
+	jQuery(document).ready(function($){  
+    $("#form_busca").validate();  
+  });    
+</script>

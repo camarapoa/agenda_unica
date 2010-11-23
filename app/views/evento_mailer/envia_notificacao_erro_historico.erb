@@ -1,0 +1,24 @@
+<style>
+  body { font-family: verdana; font-size: 11px; }
+</style>
+
+<p>Prezado(a) Senhor(a):</p>
+
+Informamos que não foi possível registrar o histórico da última alteração efetuada no evento. No entanto, a alteração foi efetuada com sucesso.
+
+<br/>
+<br/>
+<b>Operador: </b><%= @operador.nome %><br/>
+<b>Evento: </b><%= @evento.titulo %><br/>
+<b>Data: </b><%= @evento.data_inicio.strftime('%d/%m/%Y')  %></br>
+<b>Horário: </b><%= @evento.horario_inicio %><br/>
+<b>Modificação: </b><%= @changes.to_s %><br/>
+<b>Erro: </b><%= @erro %><br/>
+
+<br/>
+<br/>
+Para maiores informações, contate a Assessoria de Informática.
+
+<br/>
+<br/>
+<span style='font-size:9px'>desenvolvido pela Assessoria de Informática da CMPA - 2010</span>

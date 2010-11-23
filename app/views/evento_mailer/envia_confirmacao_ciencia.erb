@@ -1,0 +1,24 @@
+<style>
+  body { font-family: verdana; font-size: 11px; }
+</style>
+
+<p>Prezado(a) Senhor(a):</p>
+Sua área está sendo cientificada sobre o a realização do evento abaixo:
+
+<p><b>Evento: </b><%= @evento.titulo %></p>
+<p><b>Descrição: </b><%= @evento.descricao %>	
+<p><b>Data: </b><%= @evento.data_inicio.strftime('%d/%m/%Y')  %></p>
+<p><b>Horário: </b><%= @evento.horario_inicio %>	
+<% local = "#{@evento.local.nome}" if @evento.local %>
+<% local = @evento.outro_local if !@evento.local %>
+<p><b>Local: </b><%= local %></p>
+<p><b>Necessidades de Recursos: </b><%= @evento.observacao %></p>
+
+
+<br/>
+<br/>
+Para maiores informações, consulte a Agenda Única.
+
+<br/>
+<br/>
+<span style='font-size:9px'>desenvolvido pela Assessoria de Informática da CMPA - 2009</span>

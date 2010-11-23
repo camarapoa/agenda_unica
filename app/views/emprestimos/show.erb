@@ -1,0 +1,74 @@
+<h3>Detalhes da Solicitação de Empréstimo</h3>
+
+<table id='actions'>
+	<tr>		
+	<% if current_lotacao.role_of_administrador_agenda? and (@emprestimo.status == 'por_atender' or @emprestimo.status == 'autorizado_por_superior') %>
+		<td><%= link_to 'Negar solicitação', negar_emprestimo_path(@emprestimo), :method => :put, :icon => 'cancel' %></tdi>           	      	
+		<td><%= link_to 'Autorizar o Solicitante', autorizar_emprestimo_path(@emprestimo), :icon => :user_go, :method => :put, :confirm => "Você realmente deseja autorizar o solicitante?\nAo autorizar, será criado novo evento na agenda.\nO evento poderá ser gerenciado somente por #{@emprestimo.funcionario_solicitante.nome}" %></td>
+    <td><%= link_to 'Gerenciar Evento', gerenciar_emprestimo_path(@emprestimo), :icon => :application_form_edit, :method => :put , :confirm => "Você realmente deseja gerenciar o evento?\nSe sim, será criado novo evento na agenda sob sua responsabilidade." %></td>    
+    <% if @emprestimo.status != 'autorizado_por_superior' %>
+    	<td><%= link_to 'Enviar à Direção-Geral para Autorização', solicitar_autorizacao_superior_emprestimo_path(@emprestimo), :icon => :group_add, :method => :put  %></td>    
+    <% end %>	
+	<% end %>
+	<% if current_lotacao.role_of_super_administrador_agenda? and @emprestimo.status == 'aguardando_autorizacao_superior' %>		
+		<td><%= link_to 'Negar solicitação', negativa_superior_emprestimo_path(@emprestimo), :method => :put, :icon => :cancel %></td>           	      	
+		<td><%= link_to 'Autorizar a Solicitação', autorizacao_superior_emprestimo_path(@emprestimo), :icon => :user_go, :method => :put, :confirm => "Você realmente deseja autorizar o empréstimo do espaço?" %></td>
+	<% end %>    
+	</tr>
+</table>
+
+
+<table class='attributes'>	
+	<tr>
+    <th>Local:</th>
+    <td><%= @emprestimo.espaco.nome %></td>
+  </tr>  	
+  <tr>
+    <th>Data de Utilização:</th>
+    <td><%= "#{@emprestimo.data_inicio.strftime('%d/%m/%Y')} - de #{@emprestimo.horario_inicio} às #{@emprestimo.horario_termino}" %></td>
+  </tr>
+  <tr>
+    <th>Descrição:</th>
+    <td><%= @emprestimo.descricao %></td>
+  </tr>  
+ <tr>
+    <th>Necessidades de recursos:</th>
+    <td><%= @emprestimo.necessidades %></td>
+  </tr>    
+  <tr>
+    <th>Status:</th>
+    <td><%= @emprestimo.status_real.humanize %></td>
+  </tr> 
+  <% if @emprestimo.status == 'aguardando_autorizacao_superior' %>
+  <tr>
+    <th>Justificativa de Autorização Superior:</th>
+    <td><%= @emprestimo.mensagem_ao_super %></td>
+  </tr>
+  <% end %>   
+  <% if @emprestimo.status == 'nao_autorizado' %>
+  <tr>
+    <th>Justificativa:</th>
+    <td><%= @emprestimo.resultado %></td>
+  </tr>
+  <% end %> 
+  <% if @emprestimo.status == 'autorizado_por_superior' %>
+  <tr>
+    <th>Justificativa do superior:</th>
+    <td><%= @emprestimo.resultado %></td>
+  </tr>
+  <% end %> 
+  <tr>
+    <th>Funcionario Solicitante:</th>
+    <td><%= @emprestimo.funcionario_solicitante.nome %></td>
+  </tr>  
+  <tr>
+    <th>Setor Solicitante:</th>
+    <td><%= @emprestimo.setor_solicitante.nome %></td>
+  </tr>    
+</table>  
+
+<p><%= auditoria_atualizacao @emprestimo %></p>
+<br />
+<ul class='toolbar'>
+  <li><%= link_to "Retornar", back_path_or(emprestimos_path), :icon => :arrow_left %></li>
+</ul>

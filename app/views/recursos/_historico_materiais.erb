@@ -1,0 +1,59 @@
+<h3>Histórico de Solicitações</h3>
+
+<% if @logs.any? %>
+  <% @logs.each do |log| %>
+    <% m = log.history['material'] %>
+    <p>
+      <% if m %>
+        Atualizado em <%= log.updated_at.strftime('%d/%m/%Y') %> às <%= log.updated_at.strftime('%Hh %Mmin') %> por ...<br />
+      <% end %>
+      <ul>
+        <!-- Mensagens para materiais adicionados ou removidos -->
+        <% if m %>
+          <% if m['removido'] %>
+            <strong><%= m['removido'][0] %></strong> <em><%= m['removido'][1] %></em> removidos(as)
+          <% elsif m['adicionado'] %>
+            <strong><%= m['adicionado'][0] %></strong> <em><%= m['adicionado'][1] %></em> solicitados(as)
+          <% end %>
+          
+          <!--
+            Mensagens para materiais alterados
+            3 atributos podem ser alterados:
+              * quantidade,
+              * observacao,
+              * recurso_evento_id (tipo de material foi alterado)
+          -->
+          <% if m = m['alterado'] %>
+            <% if m['quantidade'] %>
+              <li>
+                <strong>Quantidade</strong> foi modificada de 
+                <em><%= m['quantidade'][0] %></em> para <em><%= m['quantidade'][1] %></em> unidades
+              </li>
+            <% end %>
+            <% if m['observacao'] %>
+              <li>
+                <% if m['observacao'][0].blank? %>
+                  <strong>Observação</strong> '<em><%= m['observacao'][1] %></em>' adicionada
+                <% elsif m['observacao'][1].blank? %>
+                  <strong>Observação</strong> '<em><%= m['observacao'][0] %></em>' removida
+                <% else %>
+                  <strong>Observação</strong> foi modificada de 
+                  '<em><%= m['observacao'][0] %></em>' para '<em><%= m['observacao'][1] %></em>'
+                <% end %>
+              </li>
+            <% end %>
+            <% if m['recurso_evento_id'] %>
+              <li>
+                <strong>Tipo de material</strong> foi modificado de 
+                <em><%= RecursoEvento.find(m['recurso_evento_id'][0].to_i).nome %></em>
+                 para <em><%= RecursoEvento.find(m['recurso_evento_id'][1].to_i).nome %></em>
+              </li>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+    </p>
+  <% end %>
+<% else %>
+  ** Nenhum histórico registrado **
+<% end %>

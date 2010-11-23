@@ -1,0 +1,16 @@
+connection: &default_settings
+  adapter: sqlserver
+  mode: ADO
+  provider: SQLOLEDB
+  host: <>
+  username: <>
+  password: <>
+  encoding: utf-8
+
+development:
+  <<: *default_settings
+  database: <>
+  
+production:
+  <<: *default_settings
+  database: <>

@@ -1,0 +1,5 @@
+<% if current_lotacao.role_of_administrador_agenda? %>
+	<%= render :partial => 'index_administrador' %>
+<% else %>	
+	<%= render :partial => 'index_super_administrador' %>
+<% end %>

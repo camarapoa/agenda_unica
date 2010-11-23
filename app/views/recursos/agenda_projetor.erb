@@ -1,0 +1,43 @@
+<% title 'Agendamentos do Projetor' %>
+<% stylesheet 'agenda' %>
+
+<% if @recursos_eventos.any? %>
+  <h3>
+    Agendamentos do Projetor Multimídia em 
+    <%= Date::MONTHNAMES[@evento.data_inicio.month] %> de <%= @evento.data_inicio.year %>
+  </h3>
+  
+  <table border=1 cellspacing=1 cellpadding=5>
+    <tr>
+      <td class='header'>Período</td>
+      <td class='header'>Horário</td>
+      <td class='header'>Evento</td>
+      <td class='header'>Quantidade</td>
+      <td class='header'>Observações</td>
+    </tr>
+      <% for recurso_evento in @recursos_eventos %>
+        <tr>
+          <td>
+            <%= recurso_evento.evento.data_inicio.strftime('%d') %>
+            (<%=  I18n.t('date.abbr_day_names')[recurso_evento.evento.data_inicio.strftime('%w').to_i]%>) à  
+            <%= recurso_evento.evento.data_termino.strftime('%d') %> 
+            (<%=  I18n.t('date.abbr_day_names')[recurso_evento.evento.data_termino.strftime('%w').to_i]%>) 
+          </td>
+          <td>
+            <%= recurso_evento.evento.horario_inicio %> - 
+            <%= recurso_evento.evento.horario_termino %>
+          </td>
+          <td>
+            <%= recurso_evento.evento.tipo_evento.nome %> - 
+            <%= recurso_evento.evento.titulo %></td>
+          <td><%= recurso_evento.quantidade %></td>
+          <td><%= recurso_evento.observacao || "sem obs." %></td>
+        </tr>
+        
+      <% end %>
+  </table>
+<% else %>
+  <div class='flash warning'>
+    Nenhum evento solicitou o projetor em <%= @evento.data_inicio.strftime('%m de %Y') %>
+  </div>
+<% end %>

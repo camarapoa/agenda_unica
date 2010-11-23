@@ -1,0 +1,13 @@
+<div class='box no-box'>
+  <h3>Edição de Evento</h3>
+  <div>
+    <% form_for setup_evento(@evento), :html => { :multipart => true } do |f| %>
+      <%= render 'form', :f => f %>
+      <%= f.submit 'Salvar', :disable_with => 'Aguarde...' %>
+      <%= f.submit 'Salvar e Fechar', :disable_with => 'Aguarde...', :name => :save_and_close %>
+      <ul class='toolbar right'>
+        <li><%= link_to 'Cancelar', session[:last_page] || @evento, :icon => :arrow_left %></li>
+      </ul>
+    <% end %>
+  </div>
+</div>

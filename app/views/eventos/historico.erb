@@ -1,0 +1,153 @@
+<h3>Histórico do Evento</h3>
+
+<% # Só para exibir uma mensagem mais amigável e não uma página em branco caso
+   # as únicas modificações do evento estejam relacionadas aos materiais...
+  show_history = false
+  @logs.each do |log|
+    show_history = true and break unless log.history.key?('material')
+  end
+%>
+
+<% if @logs.any? && show_history %>
+  <% @logs.each do |log| %>
+    <% changes = log.history %>
+    <p>
+      <% unless changes.key?('material') %>
+        Atualizado em <%= log.updated_at.strftime('%d/%m/%Y') %> às <%= log.updated_at.strftime('%Hh %Mmin') %> por ...<br />
+      <% end %>
+      <ul>
+        <% if c = changes['emails'] %>
+          <li>
+            <strong>Convocação</strong> enviada para os seguintes e-mails
+            <ul>
+              <% c.each do |email| %>
+                <li><em><%= email %></em></li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>       
+        <% if c = changes['local_id'] %>
+          <li>
+            <strong>Local</strong> foi modificado de 
+            <em><%= Local.find(c[0]).nome.to_s + ' (' + Local.find(c[0]).complemento.to_s + ')' %></em> para 
+            <em><%= Local.find(c[1]).nome.to_s + ' (' + Local.find(c[1]).complemento.to_s + ')' %></em>
+          </li>
+        <% end %>
+        <% if c = changes['outro_local'] %>
+          <li>
+            <strong>Outro local</strong> foi modificado de 
+            <em><%= c[0] %></em> para <em><%= c[1] %></em>
+          </li>
+        <% end %>
+        
+        <% if c = changes['tipo_evento_id'] %>
+          <li>
+            <strong>Tipo de evento</strong> foi modificado de 
+            <em><%= TipoEvento.find(c[0]).nome %></em> para <em><%= TipoEvento.find(c[1]).nome %></em>
+          </li>
+        <% end %>
+        <% if c = changes['processo_id'] %>
+          <li>
+            <strong>Processo</strong> foi modificado de 
+            <em><%= c[0] %></em> para <em><%= c[1] %></em>
+          </li>
+        <% end %>
+        <% if c = changes['titulo'] %>
+          <li>
+            <strong>Título</strong> foi modificado de 
+            '<em><%= c[0] %></em>' para '<em><%= c[1] %></em>'
+          </li>
+        <% end %>
+        <% if c = changes['descricao'] %>
+          <li>
+            <% if c[0].blank? %>
+              <strong>Descrição</strong> '<em><%= c[1] %></em>' adicionada
+            <% elsif c[1].blank? %>
+              <strong>Descrição</strong> '<em><%= c[0] %></em>' removida
+            <% else %>
+              <strong>Descrição</strong> foi modificada de 
+              '<em><%= c[0] %></em>' para '<em><%= c[1] %></em>'
+            <% end %>
+          </li>
+        <% end %>
+        <% if c = changes['proponente'] %>
+          <li>
+            <strong>Proponente</strong> foi modificado de
+            '<em><%= c[0] %></em>' para '<em><%= c[1] %></em>'
+          </li>
+        <% end %>
+        <% if c = changes['coordenador'] %>
+          <li>
+            <% if c[0].blank? %>
+              <strong>Coordenador</strong> '<em><%= c[1] %></em>' adicionado
+            <% elsif c[1].blank? %>
+              <strong>Coordenador</strong> '<em><%= c[0] %></em>' removido
+            <% else %>
+              <strong>Coordenador</strong> foi modificado de 
+              '<em><%= c[0] %></em>' para '<em><%= c[1] %></em>'
+            <% end %>
+          </li>
+        <% end %>
+        <% if c = changes['contato'] %>
+          <li>
+            <strong>Contato</strong> foi modificado de 
+            '<em><%= c[0] %></em>' para '<em><%= c[1] %></em>'
+          </li>
+        <% end %>
+        <% if c = changes['documento'] %>
+          <li>
+            <strong>Documento</strong> foi modificado de
+            <em><%= c[0] %></em> para <em><%= c[1] %></em>
+          </li>
+        <% end %>
+        
+        <% if c = changes['observacao'] %>
+          <li>
+            <% if c[0].blank? %>
+              <strong>Observação</strong> '<em><%= c[1] %></em>' adicionada
+            <% elsif c[1].blank? %>
+              <strong>Observação</strong> '<em><%= c[0] %></em>' removida
+            <% else %>
+              <strong>Observação</strong> foi modificada de 
+              '<em><%= c[0] %></em>' para '<em><%= c[1] %></em>'
+            <% end %>
+          </li>
+        <% end %>
+        <% if c = changes['status'] %>
+          <li>
+            <strong>Status</strong> foi modificado de 
+            <em><%= c[0] %></em> para <em><%= c[1] %></em>
+          </li>
+        <% end %>
+        <% if c = changes['data_inicio'] %>
+          <li>
+            <strong>Data de inicio</strong> foi modificada de 
+            <em><%= c[0] %></em> para <em><%= c[1] %></em>
+          </li>
+        <% end %>
+        <% if c = changes['horario_inicio'] %>
+          <li>
+            <strong>Horário de inicio</strong> foi modificado de 
+            <em><%= c[0] %></em> para <em><%= c[1] %></em>
+          </li>
+        <% end %>
+        <% if c = changes['data_termino'] %>
+          <li>
+            <strong>Data de término</strong> foi modificada de 
+            <em><%= c[0] %></em> para <em><%= c[1] %></em>
+          </li>
+        <% end %>
+        <% if c = changes['horario_termino'] %>
+          <li>
+            <strong>Horário de término</strong> foi modificado de 
+            <em><%= c[0] %></em> para <em><%= c[1] %></em>
+          </li>
+        <% end %>
+      </ul>
+    </p>
+  <% end %>
+<% else %>
+  ** Este evento não possui histórico registrado **
+<% end %>
+
+
